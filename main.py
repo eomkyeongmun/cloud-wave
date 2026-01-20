@@ -1,5 +1,4 @@
 import streamlit as st
-
 from streamlit_option_menu import option_menu
 from widget.login import __login__
 from menu.homepage_linux import Homepage
@@ -15,7 +14,6 @@ st.set_page_config(
 )
 
 if 'logged_in' not in st.session_state:
-    # st.session_state['logged_in'] = True
     # RDS Database Login Session / Login Function
     st.session_state['logged_in'] = False
 
@@ -23,9 +21,7 @@ def side_bar():
     with st.sidebar.container():
         selected_page = option_menu(
             menu_title="Main Menu", 
-            # options=["Main_Home"],
             options=["Main_Home", "Photo_Gallery"],
-            # options=["Main_Home", "Photo_Gallery", "Travel_Attractions"],
             icons=['bi bi-house', 'bi bi-images', 'bi bi-airplane-engines'],
             menu_icon="cast", 
             default_index=0,
@@ -36,19 +32,22 @@ def side_bar():
                 "nav-link-selected": {"background-color": "#08c7b4"}
             }
         )
-         col1, col2, col3 = st.columns(3)
-         with col1:
-             # RDS Database Login Session / Logout Function      
-             if st.button('Logout', use_container_width=True):
-                 st.session_state['logged_in'] = False
-                 st.rerun()
-         with col2:
-             if st.button('ReRun', use_container_width=True):
-                 st.rerun()
+        
+        # 들여쓰기 수정 완료
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            # RDS Database Login Session / Logout Function      
+            if st.button('Logout', use_container_width=True):
+                st.session_state['logged_in'] = False
+                st.rerun()
+        with col2:
+            if st.button('ReRun', use_container_width=True):
+                st.rerun()
+                
     return selected_page
 
 def main():
-    if st.session_state['logged_in'] == True:
+    if st.session_state.get('logged_in'):
         selected_page = side_bar()
         if selected_page == 'Main_Home':
             Homepage()
@@ -58,6 +57,6 @@ def main():
             TravelAttraction()
     else:
         __login__()
-    
+
 if __name__ == "__main__":
     main()
