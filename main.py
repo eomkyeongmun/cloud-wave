@@ -34,17 +34,17 @@ def side_bar():
         )
         
         # 들여쓰기 수정 완료
-        col1, col2, col3 = st.columns(3)
-        with col1:
+        #col1, col2, col3 = st.columns(3)
+        #with col1:
             # RDS Database Login Session / Logout Function      
-            if st.button('Logout', use_container_width=True):
-                st.session_state['logged_in'] = False
-                st.rerun()
-        with col2:
-            if st.button('ReRun', use_container_width=True):
-                st.rerun()
+         #   if st.button('Logout', use_container_width=True):
+          #      st.session_state['logged_in'] = False
+           #     st.rerun()
+        #with col2:
+         #   if st.button('ReRun', use_container_width=True):
+          #      st.rerun()
                 
-    return selected_page
+    #return selected_page
 
 def main():
     if st.session_state.get('logged_in'):

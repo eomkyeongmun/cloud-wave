@@ -1,4 +1,4 @@
-# import redis
+#pip install flask flask-cors requests# import redis
 from flask import *
 
 from login_connection import login_blueprint

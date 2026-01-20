@@ -1,2 +1,4 @@
 OLD_CODE/
-*/__pycache__/
+*/__pycache__/venv/
+__pycache__/
+*.pyc
